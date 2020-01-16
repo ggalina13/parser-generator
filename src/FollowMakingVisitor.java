@@ -44,7 +44,7 @@ public class FollowMakingVisitor extends GrammarOfGrammarBaseVisitor {
         //expr : token |
         //        '(' expr ')' |
         //        expr expr;
-        if (ctx.getChildCount() == 2){
+        if (ctx.getChildCount() == 2) {
             //expr : expr expr;
             GrammarOfGrammarParser.ExprContext leftExprCtx = (GrammarOfGrammarParser.ExprContext) ctx.getChild(0);
             ParseTree rightMostTokenCtx = findRightmostToken(leftExprCtx);
@@ -52,20 +52,19 @@ public class FollowMakingVisitor extends GrammarOfGrammarBaseVisitor {
                 return null;
             String rightMostToken = rightMostTokenCtx.getText();
             GrammarOfGrammarParser.ExprContext nextCtx = (GrammarOfGrammarParser.ExprContext) ctx.getChild(1);
-            HashSet<String> nextFirst = FirstMakingVisitor.firstByExprCtx.get(nextCtx);
+            HashSet<String> nextFirst = (HashSet<String>) FirstMakingVisitor.firstByExprCtx.get(nextCtx).clone();
             if (!followByToken.containsKey(rightMostToken)){
                 followByToken.put(rightMostToken, new HashSet<>());
             }
             nextFirst.removeAll(followByToken.get(rightMostToken));
+            if (nextFirst.contains("EPS"))
+                nextFirst.remove("EPS");
             if (!nextFirst.isEmpty()){ //FOLLOW[B] ∪= FIRST(γ)∖{ε}
                 followByToken.get(rightMostToken).addAll(nextFirst);
-                if (followByToken.get(rightMostToken).contains("''")) {
-                    followByToken.get(rightMostToken).remove("''");
-                }
                 changed = true;
             }
         }
-        return null;
+        return (HashSet<String>) visitChildren(ctx);
     }
 
     @Override public HashSet<String> visitRule_(GrammarOfGrammarParser.Rule_Context ctx){
@@ -73,7 +72,7 @@ public class FollowMakingVisitor extends GrammarOfGrammarBaseVisitor {
         if (!foundStart){
             foundStart = true;
             followByToken.put(tokenName, new HashSet<>());
-            followByToken.get(tokenName).add("$");
+            followByToken.get(tokenName).add("END");
         }
         Integer nextChildNum = 2;
         while (nextChildNum < ctx.getChildCount()){
@@ -81,23 +80,27 @@ public class FollowMakingVisitor extends GrammarOfGrammarBaseVisitor {
             // if ε ∈ FIRST(γ)
             //    FOLLOW[B] ∪= FOLLOW[A]
             ParseTree rightMostTokenCtx = findRightmostToken((GrammarOfGrammarParser.ExprContext) ctx.getChild(nextChildNum));
+            if (rightMostTokenCtx == null) {
+                nextChildNum += 2;
+                continue;
+            }
             String rightMostToken = rightMostTokenCtx.getText();
             while (true) {
                 if (rightMostToken == null)
                     break;
-                HashSet<String> curChildFirst = FirstMakingVisitor.firstByExprCtx.get(ctx.getChild(nextChildNum));
+                HashSet<String> rightTokenFirst = (HashSet<String>) FirstMakingVisitor.firstByToken.get(rightMostToken).clone();
                 if (!followByToken.containsKey(rightMostToken)) {
                     followByToken.put(rightMostToken, new HashSet<>());
                 }
                 if (followByToken.containsKey(tokenName)) { //
-                    HashSet<String> mainTokenFollow = followByToken.get(tokenName);
+                    HashSet<String> mainTokenFollow = (HashSet<String>) followByToken.get(tokenName).clone();
                     mainTokenFollow.removeAll(followByToken.get(rightMostToken));
                     if (!mainTokenFollow.isEmpty()) {
                         changed = true;
                         followByToken.get(rightMostToken).addAll(mainTokenFollow);
                     }
                 }
-                if (!followByToken.containsKey("''"))
+                if (!rightTokenFirst.contains("EPS"))
                     break;
                 rightMostTokenCtx = findLefter(rightMostTokenCtx);
                 rightMostToken = rightMostTokenCtx.getText();

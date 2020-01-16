@@ -45,8 +45,8 @@ public class FirstMakingVisitor extends GrammarOfGrammarBaseVisitor<HashSet<Stri
             case 2: {
                 ret1 = visit(ctx.getChild(0));
                 ret2 = visit(ctx.getChild(1));
-                if (ret1.contains("''")){
-                    ret1.remove("''");
+                if (ret1.contains("EPS")){
+                    ret1.remove("EPS");
                     ret1.addAll(ret2);
                 }
                 break;
