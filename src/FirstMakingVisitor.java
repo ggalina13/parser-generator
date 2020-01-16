@@ -6,6 +6,7 @@ public class FirstMakingVisitor extends GrammarOfGrammarBaseVisitor<HashSet<Stri
     public static Boolean changed;
     public static HashMap<String, HashSet<String>> firstByToken;
     public static HashMap<GrammarOfGrammarParser.ExprContext, HashSet<String>> firstByExprCtx;
+    public static HashSet<String> hasEpsilonRuleTokens;
     /*@Override public HashSet<String> visitStrings(GrammarOfGrammarParser.StringsContext ctx) {
         changed = true;
         while (changed) {
@@ -14,7 +15,7 @@ public class FirstMakingVisitor extends GrammarOfGrammarBaseVisitor<HashSet<Stri
         }
         return null;
     }*/
-    @Override public HashSet<String> visitNotTerminalRule(GrammarOfGrammarParser.NotTerminalRuleContext ctx) {
+    @Override public HashSet<String> visitRule_(GrammarOfGrammarParser.Rule_Context ctx) {
         String tokenName = ctx.getChild(0).getText();
         Integer nextChildNum = 2;
         while (nextChildNum < ctx.getChildCount()){
@@ -35,20 +36,27 @@ public class FirstMakingVisitor extends GrammarOfGrammarBaseVisitor<HashSet<Stri
         //expr : token |
         //        '(' expr ')' |
         //        expr expr;
-        HashSet<String> ret = new HashSet<>();
+        HashSet<String> ret1 = new HashSet<>();
+        HashSet<String> ret2 = new HashSet<>();
         switch (ctx.getChildCount()){
             case 1:
-                ret = visit(ctx.getChild(0));
+                ret1 = visit(ctx.getChild(0));
                 break;
-            case 2:
-                ret =  visit(ctx.getChild(0));
+            case 2: {
+                ret1 = visit(ctx.getChild(0));
+                ret2 = visit(ctx.getChild(1));
+                if (ret1.contains("''")){
+                    ret1.remove("''");
+                    ret1.addAll(ret2);
+                }
                 break;
+            }
             case 3:
-                ret = visit(ctx.getChild(1));
+                ret1 = visit(ctx.getChild(1));
                 break;
         }
-        firstByExprCtx.put(ctx, ret);
-        return ret;
+        firstByExprCtx.put(ctx, ret1);
+        return ret1;
     }
 
     @Override public HashSet<String> visitTerminalExpr(GrammarOfGrammarParser.TerminalExprContext ctx) {
@@ -65,7 +73,7 @@ public class FirstMakingVisitor extends GrammarOfGrammarBaseVisitor<HashSet<Stri
         return ret;
     }
 
-    @Override public HashSet<String> visitTerminalRule(GrammarOfGrammarParser.TerminalRuleContext ctx) {
+    /*@Override public HashSet<String> visitTerminalRule(GrammarOfGrammarParser.TerminalRuleContext ctx) {
         String tokenName = ctx.getChild(0).getText();
         String terminalRgx = ctx.getChild(2).getText();
         String terminalName = TerminalListMakingVisitor.nameByTerminal.get(terminalRgx);
@@ -78,5 +86,5 @@ public class FirstMakingVisitor extends GrammarOfGrammarBaseVisitor<HashSet<Stri
             firstByToken.put(tokenName, a);
         }
         return null;
-    }
+    }*/
 }

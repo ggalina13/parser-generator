@@ -2,21 +2,15 @@ grammar GrammarOfGrammar;
 
 start : strings EOF;
 
-strings : (terminalRule | notTerminalRule) ';' strings | ;
+strings : rule_ ';' strings | ;
 
-notTerminalRule : mainNotTerminal ':' expr ( '|' expr)*;
-
-terminalRule : terminal ':' terminalExpr;
+rule_ : mainNotTerminal ':' expr ( '|' expr)*;
 
 mainNotTerminal : notTerminal;
 
 TokenName : [a-zA-Z0-9]+;
 
 notTerminal : TokenName;
-
-terminal : TokenName | epsilon;
-
-epsilon : 'ε';
 
 expr : token |
         '(' expr ')' |
@@ -27,7 +21,7 @@ token : notTerminal |
 
 terminalExpr : Rgx;
 
-Rgx : '\'' .+? '\'';
+Rgx : '\'' .*? '\'';
 
 WS
    : [ \n\t\r]+ -> skip;

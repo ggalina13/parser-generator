@@ -28,12 +28,22 @@ public class Main {
             }
             System.out.println();
         }
+        System.out.println();
+        System.out.println();
         FollowMakingVisitor followVisitor = new FollowMakingVisitor();
         followVisitor.followByToken = new HashMap<>();
         followVisitor.changed = true;
+        followVisitor.foundStart = false;
         while (followVisitor.changed){
             followVisitor.changed = false;
             followVisitor.visit(tree);
+        }
+        for (String token : followVisitor.followByToken.keySet()){
+            System.out.print(token + " : ");
+            for (String firstEl : followVisitor.followByToken.get(token)){
+                System.out.print(terminalVisitor.terminalByName.get(firstEl) + " ");
+            }
+            System.out.println();
         }
     }
 }

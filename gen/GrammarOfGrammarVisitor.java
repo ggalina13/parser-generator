@@ -22,17 +22,11 @@ public interface GrammarOfGrammarVisitor<T> extends ParseTreeVisitor<T> {
 	 */
 	T visitStrings(GrammarOfGrammarParser.StringsContext ctx);
 	/**
-	 * Visit a parse tree produced by {@link GrammarOfGrammarParser#notTerminalRule}.
+	 * Visit a parse tree produced by {@link GrammarOfGrammarParser#rule_}.
 	 * @param ctx the parse tree
 	 * @return the visitor result
 	 */
-	T visitNotTerminalRule(GrammarOfGrammarParser.NotTerminalRuleContext ctx);
-	/**
-	 * Visit a parse tree produced by {@link GrammarOfGrammarParser#terminalRule}.
-	 * @param ctx the parse tree
-	 * @return the visitor result
-	 */
-	T visitTerminalRule(GrammarOfGrammarParser.TerminalRuleContext ctx);
+	T visitRule_(GrammarOfGrammarParser.Rule_Context ctx);
 	/**
 	 * Visit a parse tree produced by {@link GrammarOfGrammarParser#mainNotTerminal}.
 	 * @param ctx the parse tree
@@ -45,12 +39,6 @@ public interface GrammarOfGrammarVisitor<T> extends ParseTreeVisitor<T> {
 	 * @return the visitor result
 	 */
 	T visitNotTerminal(GrammarOfGrammarParser.NotTerminalContext ctx);
-	/**
-	 * Visit a parse tree produced by {@link GrammarOfGrammarParser#terminal}.
-	 * @param ctx the parse tree
-	 * @return the visitor result
-	 */
-	T visitTerminal(GrammarOfGrammarParser.TerminalContext ctx);
 	/**
 	 * Visit a parse tree produced by {@link GrammarOfGrammarParser#expr}.
 	 * @param ctx the parse tree

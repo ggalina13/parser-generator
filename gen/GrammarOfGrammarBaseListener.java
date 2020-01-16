@@ -39,25 +39,13 @@ public class GrammarOfGrammarBaseListener implements GrammarOfGrammarListener {
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
-	@Override public void enterNotTerminalRule(GrammarOfGrammarParser.NotTerminalRuleContext ctx) { }
+	@Override public void enterRule_(GrammarOfGrammarParser.Rule_Context ctx) { }
 	/**
 	 * {@inheritDoc}
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
-	@Override public void exitNotTerminalRule(GrammarOfGrammarParser.NotTerminalRuleContext ctx) { }
-	/**
-	 * {@inheritDoc}
-	 *
-	 * <p>The default implementation does nothing.</p>
-	 */
-	@Override public void enterTerminalRule(GrammarOfGrammarParser.TerminalRuleContext ctx) { }
-	/**
-	 * {@inheritDoc}
-	 *
-	 * <p>The default implementation does nothing.</p>
-	 */
-	@Override public void exitTerminalRule(GrammarOfGrammarParser.TerminalRuleContext ctx) { }
+	@Override public void exitRule_(GrammarOfGrammarParser.Rule_Context ctx) { }
 	/**
 	 * {@inheritDoc}
 	 *
@@ -82,18 +70,6 @@ public class GrammarOfGrammarBaseListener implements GrammarOfGrammarListener {
 	 * <p>The default implementation does nothing.</p>
 	 */
 	@Override public void exitNotTerminal(GrammarOfGrammarParser.NotTerminalContext ctx) { }
-	/**
-	 * {@inheritDoc}
-	 *
-	 * <p>The default implementation does nothing.</p>
-	 */
-	@Override public void enterTerminal(GrammarOfGrammarParser.TerminalContext ctx) { }
-	/**
-	 * {@inheritDoc}
-	 *
-	 * <p>The default implementation does nothing.</p>
-	 */
-	@Override public void exitTerminal(GrammarOfGrammarParser.TerminalContext ctx) { }
 	/**
 	 * {@inheritDoc}
 	 *

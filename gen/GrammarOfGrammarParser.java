@@ -18,13 +18,12 @@ public class GrammarOfGrammarParser extends Parser {
 	public static final int
 		T__0=1, T__1=2, T__2=3, T__3=4, T__4=5, TokenName=6, Rgx=7, WS=8;
 	public static final int
-		RULE_start = 0, RULE_strings = 1, RULE_notTerminalRule = 2, RULE_terminalRule = 3, 
-		RULE_mainNotTerminal = 4, RULE_notTerminal = 5, RULE_terminal = 6, RULE_expr = 7, 
-		RULE_token = 8, RULE_terminalExpr = 9;
+		RULE_start = 0, RULE_strings = 1, RULE_rule_ = 2, RULE_mainNotTerminal = 3, 
+		RULE_notTerminal = 4, RULE_expr = 5, RULE_token = 6, RULE_terminalExpr = 7;
 	private static String[] makeRuleNames() {
 		return new String[] {
-			"start", "strings", "notTerminalRule", "terminalRule", "mainNotTerminal", 
-			"notTerminal", "terminal", "expr", "token", "terminalExpr"
+			"start", "strings", "rule_", "mainNotTerminal", "notTerminal", "expr", 
+			"token", "terminalExpr"
 		};
 	}
 	public static final String[] ruleNames = makeRuleNames();
@@ -121,9 +120,9 @@ public class GrammarOfGrammarParser extends Parser {
 		try {
 			enterOuterAlt(_localctx, 1);
 			{
-			setState(20);
+			setState(16);
 			strings();
-			setState(21);
+			setState(17);
 			match(EOF);
 			}
 		}
@@ -139,14 +138,11 @@ public class GrammarOfGrammarParser extends Parser {
 	}
 
 	public static class StringsContext extends ParserRuleContext {
+		public Rule_Context rule_() {
+			return getRuleContext(Rule_Context.class,0);
+		}
 		public StringsContext strings() {
 			return getRuleContext(StringsContext.class,0);
-		}
-		public TerminalRuleContext terminalRule() {
-			return getRuleContext(TerminalRuleContext.class,0);
-		}
-		public NotTerminalRuleContext notTerminalRule() {
-			return getRuleContext(NotTerminalRuleContext.class,0);
 		}
 		public StringsContext(ParserRuleContext parent, int invokingState) {
 			super(parent, invokingState);
@@ -171,31 +167,17 @@ public class GrammarOfGrammarParser extends Parser {
 		StringsContext _localctx = new StringsContext(_ctx, getState());
 		enterRule(_localctx, 2, RULE_strings);
 		try {
-			setState(31);
+			setState(24);
 			_errHandler.sync(this);
 			switch (_input.LA(1)) {
 			case TokenName:
 				enterOuterAlt(_localctx, 1);
 				{
-				setState(25);
-				_errHandler.sync(this);
-				switch ( getInterpreter().adaptivePredict(_input,0,_ctx) ) {
-				case 1:
-					{
-					setState(23);
-					terminalRule();
-					}
-					break;
-				case 2:
-					{
-					setState(24);
-					notTerminalRule();
-					}
-					break;
-				}
-				setState(27);
+				setState(19);
+				rule_();
+				setState(20);
 				match(T__0);
-				setState(28);
+				setState(21);
 				strings();
 				}
 				break;
@@ -219,7 +201,7 @@ public class GrammarOfGrammarParser extends Parser {
 		return _localctx;
 	}
 
-	public static class NotTerminalRuleContext extends ParserRuleContext {
+	public static class Rule_Context extends ParserRuleContext {
 		public MainNotTerminalContext mainNotTerminal() {
 			return getRuleContext(MainNotTerminalContext.class,0);
 		}
@@ -229,105 +211,54 @@ public class GrammarOfGrammarParser extends Parser {
 		public ExprContext expr(int i) {
 			return getRuleContext(ExprContext.class,i);
 		}
-		public NotTerminalRuleContext(ParserRuleContext parent, int invokingState) {
+		public Rule_Context(ParserRuleContext parent, int invokingState) {
 			super(parent, invokingState);
 		}
-		@Override public int getRuleIndex() { return RULE_notTerminalRule; }
+		@Override public int getRuleIndex() { return RULE_rule_; }
 		@Override
 		public void enterRule(ParseTreeListener listener) {
-			if ( listener instanceof GrammarOfGrammarListener ) ((GrammarOfGrammarListener)listener).enterNotTerminalRule(this);
+			if ( listener instanceof GrammarOfGrammarListener ) ((GrammarOfGrammarListener)listener).enterRule_(this);
 		}
 		@Override
 		public void exitRule(ParseTreeListener listener) {
-			if ( listener instanceof GrammarOfGrammarListener ) ((GrammarOfGrammarListener)listener).exitNotTerminalRule(this);
+			if ( listener instanceof GrammarOfGrammarListener ) ((GrammarOfGrammarListener)listener).exitRule_(this);
 		}
 		@Override
 		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
-			if ( visitor instanceof GrammarOfGrammarVisitor ) return ((GrammarOfGrammarVisitor<? extends T>)visitor).visitNotTerminalRule(this);
+			if ( visitor instanceof GrammarOfGrammarVisitor ) return ((GrammarOfGrammarVisitor<? extends T>)visitor).visitRule_(this);
 			else return visitor.visitChildren(this);
 		}
 	}
 
-	public final NotTerminalRuleContext notTerminalRule() throws RecognitionException {
-		NotTerminalRuleContext _localctx = new NotTerminalRuleContext(_ctx, getState());
-		enterRule(_localctx, 4, RULE_notTerminalRule);
+	public final Rule_Context rule_() throws RecognitionException {
+		Rule_Context _localctx = new Rule_Context(_ctx, getState());
+		enterRule(_localctx, 4, RULE_rule_);
 		int _la;
 		try {
 			enterOuterAlt(_localctx, 1);
 			{
-			setState(33);
+			setState(26);
 			mainNotTerminal();
-			setState(34);
+			setState(27);
 			match(T__1);
-			setState(35);
+			setState(28);
 			expr(0);
-			setState(40);
+			setState(33);
 			_errHandler.sync(this);
 			_la = _input.LA(1);
 			while (_la==T__2) {
 				{
 				{
-				setState(36);
+				setState(29);
 				match(T__2);
-				setState(37);
+				setState(30);
 				expr(0);
 				}
 				}
-				setState(42);
+				setState(35);
 				_errHandler.sync(this);
 				_la = _input.LA(1);
 			}
-			}
-		}
-		catch (RecognitionException re) {
-			_localctx.exception = re;
-			_errHandler.reportError(this, re);
-			_errHandler.recover(this, re);
-		}
-		finally {
-			exitRule();
-		}
-		return _localctx;
-	}
-
-	public static class TerminalRuleContext extends ParserRuleContext {
-		public TerminalContext terminal() {
-			return getRuleContext(TerminalContext.class,0);
-		}
-		public TerminalExprContext terminalExpr() {
-			return getRuleContext(TerminalExprContext.class,0);
-		}
-		public TerminalRuleContext(ParserRuleContext parent, int invokingState) {
-			super(parent, invokingState);
-		}
-		@Override public int getRuleIndex() { return RULE_terminalRule; }
-		@Override
-		public void enterRule(ParseTreeListener listener) {
-			if ( listener instanceof GrammarOfGrammarListener ) ((GrammarOfGrammarListener)listener).enterTerminalRule(this);
-		}
-		@Override
-		public void exitRule(ParseTreeListener listener) {
-			if ( listener instanceof GrammarOfGrammarListener ) ((GrammarOfGrammarListener)listener).exitTerminalRule(this);
-		}
-		@Override
-		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
-			if ( visitor instanceof GrammarOfGrammarVisitor ) return ((GrammarOfGrammarVisitor<? extends T>)visitor).visitTerminalRule(this);
-			else return visitor.visitChildren(this);
-		}
-	}
-
-	public final TerminalRuleContext terminalRule() throws RecognitionException {
-		TerminalRuleContext _localctx = new TerminalRuleContext(_ctx, getState());
-		enterRule(_localctx, 6, RULE_terminalRule);
-		try {
-			enterOuterAlt(_localctx, 1);
-			{
-			setState(43);
-			terminal();
-			setState(44);
-			match(T__1);
-			setState(45);
-			terminalExpr();
 			}
 		}
 		catch (RecognitionException re) {
@@ -366,11 +297,11 @@ public class GrammarOfGrammarParser extends Parser {
 
 	public final MainNotTerminalContext mainNotTerminal() throws RecognitionException {
 		MainNotTerminalContext _localctx = new MainNotTerminalContext(_ctx, getState());
-		enterRule(_localctx, 8, RULE_mainNotTerminal);
+		enterRule(_localctx, 6, RULE_mainNotTerminal);
 		try {
 			enterOuterAlt(_localctx, 1);
 			{
-			setState(47);
+			setState(36);
 			notTerminal();
 			}
 		}
@@ -408,53 +339,11 @@ public class GrammarOfGrammarParser extends Parser {
 
 	public final NotTerminalContext notTerminal() throws RecognitionException {
 		NotTerminalContext _localctx = new NotTerminalContext(_ctx, getState());
-		enterRule(_localctx, 10, RULE_notTerminal);
+		enterRule(_localctx, 8, RULE_notTerminal);
 		try {
 			enterOuterAlt(_localctx, 1);
 			{
-			setState(49);
-			match(TokenName);
-			}
-		}
-		catch (RecognitionException re) {
-			_localctx.exception = re;
-			_errHandler.reportError(this, re);
-			_errHandler.recover(this, re);
-		}
-		finally {
-			exitRule();
-		}
-		return _localctx;
-	}
-
-	public static class TerminalContext extends ParserRuleContext {
-		public TerminalNode TokenName() { return getToken(GrammarOfGrammarParser.TokenName, 0); }
-		public TerminalContext(ParserRuleContext parent, int invokingState) {
-			super(parent, invokingState);
-		}
-		@Override public int getRuleIndex() { return RULE_terminal; }
-		@Override
-		public void enterRule(ParseTreeListener listener) {
-			if ( listener instanceof GrammarOfGrammarListener ) ((GrammarOfGrammarListener)listener).enterTerminal(this);
-		}
-		@Override
-		public void exitRule(ParseTreeListener listener) {
-			if ( listener instanceof GrammarOfGrammarListener ) ((GrammarOfGrammarListener)listener).exitTerminal(this);
-		}
-		@Override
-		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
-			if ( visitor instanceof GrammarOfGrammarVisitor ) return ((GrammarOfGrammarVisitor<? extends T>)visitor).visitTerminal(this);
-			else return visitor.visitChildren(this);
-		}
-	}
-
-	public final TerminalContext terminal() throws RecognitionException {
-		TerminalContext _localctx = new TerminalContext(_ctx, getState());
-		enterRule(_localctx, 12, RULE_terminal);
-		try {
-			enterOuterAlt(_localctx, 1);
-			{
-			setState(51);
+			setState(38);
 			match(TokenName);
 			}
 		}
@@ -507,29 +396,29 @@ public class GrammarOfGrammarParser extends Parser {
 		int _parentState = getState();
 		ExprContext _localctx = new ExprContext(_ctx, _parentState);
 		ExprContext _prevctx = _localctx;
-		int _startState = 14;
-		enterRecursionRule(_localctx, 14, RULE_expr, _p);
+		int _startState = 10;
+		enterRecursionRule(_localctx, 10, RULE_expr, _p);
 		try {
 			int _alt;
 			enterOuterAlt(_localctx, 1);
 			{
-			setState(59);
+			setState(46);
 			_errHandler.sync(this);
 			switch (_input.LA(1)) {
 			case TokenName:
 			case Rgx:
 				{
-				setState(54);
+				setState(41);
 				token();
 				}
 				break;
 			case T__3:
 				{
-				setState(55);
+				setState(42);
 				match(T__3);
-				setState(56);
+				setState(43);
 				expr(0);
-				setState(57);
+				setState(44);
 				match(T__4);
 				}
 				break;
@@ -537,9 +426,9 @@ public class GrammarOfGrammarParser extends Parser {
 				throw new NoViableAltException(this);
 			}
 			_ctx.stop = _input.LT(-1);
-			setState(65);
+			setState(52);
 			_errHandler.sync(this);
-			_alt = getInterpreter().adaptivePredict(_input,4,_ctx);
+			_alt = getInterpreter().adaptivePredict(_input,3,_ctx);
 			while ( _alt!=2 && _alt!=org.antlr.v4.runtime.atn.ATN.INVALID_ALT_NUMBER ) {
 				if ( _alt==1 ) {
 					if ( _parseListeners!=null ) triggerExitRuleEvent();
@@ -548,16 +437,16 @@ public class GrammarOfGrammarParser extends Parser {
 					{
 					_localctx = new ExprContext(_parentctx, _parentState);
 					pushNewRecursionContext(_localctx, _startState, RULE_expr);
-					setState(61);
+					setState(48);
 					if (!(precpred(_ctx, 1))) throw new FailedPredicateException(this, "precpred(_ctx, 1)");
-					setState(62);
+					setState(49);
 					expr(2);
 					}
 					} 
 				}
-				setState(67);
+				setState(54);
 				_errHandler.sync(this);
-				_alt = getInterpreter().adaptivePredict(_input,4,_ctx);
+				_alt = getInterpreter().adaptivePredict(_input,3,_ctx);
 			}
 			}
 		}
@@ -600,22 +489,22 @@ public class GrammarOfGrammarParser extends Parser {
 
 	public final TokenContext token() throws RecognitionException {
 		TokenContext _localctx = new TokenContext(_ctx, getState());
-		enterRule(_localctx, 16, RULE_token);
+		enterRule(_localctx, 12, RULE_token);
 		try {
-			setState(70);
+			setState(57);
 			_errHandler.sync(this);
 			switch (_input.LA(1)) {
 			case TokenName:
 				enterOuterAlt(_localctx, 1);
 				{
-				setState(68);
+				setState(55);
 				notTerminal();
 				}
 				break;
 			case Rgx:
 				enterOuterAlt(_localctx, 2);
 				{
-				setState(69);
+				setState(56);
 				terminalExpr();
 				}
 				break;
@@ -657,11 +546,11 @@ public class GrammarOfGrammarParser extends Parser {
 
 	public final TerminalExprContext terminalExpr() throws RecognitionException {
 		TerminalExprContext _localctx = new TerminalExprContext(_ctx, getState());
-		enterRule(_localctx, 18, RULE_terminalExpr);
+		enterRule(_localctx, 14, RULE_terminalExpr);
 		try {
 			enterOuterAlt(_localctx, 1);
 			{
-			setState(72);
+			setState(59);
 			match(Rgx);
 			}
 		}
@@ -678,7 +567,7 @@ public class GrammarOfGrammarParser extends Parser {
 
 	public boolean sempred(RuleContext _localctx, int ruleIndex, int predIndex) {
 		switch (ruleIndex) {
-		case 7:
+		case 5:
 			return expr_sempred((ExprContext)_localctx, predIndex);
 		}
 		return true;
@@ -692,24 +581,22 @@ public class GrammarOfGrammarParser extends Parser {
 	}
 
 	public static final String _serializedATN =
-		"\3\u608b\ua72a\u8133\ub9ed\u417c\u3be7\u7786\u5964\3\nM\4\2\t\2\4\3\t"+
-		"\3\4\4\t\4\4\5\t\5\4\6\t\6\4\7\t\7\4\b\t\b\4\t\t\t\4\n\t\n\4\13\t\13\3"+
-		"\2\3\2\3\2\3\3\3\3\5\3\34\n\3\3\3\3\3\3\3\3\3\5\3\"\n\3\3\4\3\4\3\4\3"+
-		"\4\3\4\7\4)\n\4\f\4\16\4,\13\4\3\5\3\5\3\5\3\5\3\6\3\6\3\7\3\7\3\b\3\b"+
-		"\3\t\3\t\3\t\3\t\3\t\3\t\5\t>\n\t\3\t\3\t\7\tB\n\t\f\t\16\tE\13\t\3\n"+
-		"\3\n\5\nI\n\n\3\13\3\13\3\13\2\3\20\f\2\4\6\b\n\f\16\20\22\24\2\2\2H\2"+
-		"\26\3\2\2\2\4!\3\2\2\2\6#\3\2\2\2\b-\3\2\2\2\n\61\3\2\2\2\f\63\3\2\2\2"+
-		"\16\65\3\2\2\2\20=\3\2\2\2\22H\3\2\2\2\24J\3\2\2\2\26\27\5\4\3\2\27\30"+
-		"\7\2\2\3\30\3\3\2\2\2\31\34\5\b\5\2\32\34\5\6\4\2\33\31\3\2\2\2\33\32"+
-		"\3\2\2\2\34\35\3\2\2\2\35\36\7\3\2\2\36\37\5\4\3\2\37\"\3\2\2\2 \"\3\2"+
-		"\2\2!\33\3\2\2\2! \3\2\2\2\"\5\3\2\2\2#$\5\n\6\2$%\7\4\2\2%*\5\20\t\2"+
-		"&\'\7\5\2\2\')\5\20\t\2(&\3\2\2\2),\3\2\2\2*(\3\2\2\2*+\3\2\2\2+\7\3\2"+
-		"\2\2,*\3\2\2\2-.\5\16\b\2./\7\4\2\2/\60\5\24\13\2\60\t\3\2\2\2\61\62\5"+
-		"\f\7\2\62\13\3\2\2\2\63\64\7\b\2\2\64\r\3\2\2\2\65\66\7\b\2\2\66\17\3"+
-		"\2\2\2\678\b\t\1\28>\5\22\n\29:\7\6\2\2:;\5\20\t\2;<\7\7\2\2<>\3\2\2\2"+
-		"=\67\3\2\2\2=9\3\2\2\2>C\3\2\2\2?@\f\3\2\2@B\5\20\t\4A?\3\2\2\2BE\3\2"+
-		"\2\2CA\3\2\2\2CD\3\2\2\2D\21\3\2\2\2EC\3\2\2\2FI\5\f\7\2GI\5\24\13\2H"+
-		"F\3\2\2\2HG\3\2\2\2I\23\3\2\2\2JK\7\t\2\2K\25\3\2\2\2\b\33!*=CH";
+		"\3\u608b\ua72a\u8133\ub9ed\u417c\u3be7\u7786\u5964\3\n@\4\2\t\2\4\3\t"+
+		"\3\4\4\t\4\4\5\t\5\4\6\t\6\4\7\t\7\4\b\t\b\4\t\t\t\3\2\3\2\3\2\3\3\3\3"+
+		"\3\3\3\3\3\3\5\3\33\n\3\3\4\3\4\3\4\3\4\3\4\7\4\"\n\4\f\4\16\4%\13\4\3"+
+		"\5\3\5\3\6\3\6\3\7\3\7\3\7\3\7\3\7\3\7\5\7\61\n\7\3\7\3\7\7\7\65\n\7\f"+
+		"\7\16\78\13\7\3\b\3\b\5\b<\n\b\3\t\3\t\3\t\2\3\f\n\2\4\6\b\n\f\16\20\2"+
+		"\2\2<\2\22\3\2\2\2\4\32\3\2\2\2\6\34\3\2\2\2\b&\3\2\2\2\n(\3\2\2\2\f\60"+
+		"\3\2\2\2\16;\3\2\2\2\20=\3\2\2\2\22\23\5\4\3\2\23\24\7\2\2\3\24\3\3\2"+
+		"\2\2\25\26\5\6\4\2\26\27\7\3\2\2\27\30\5\4\3\2\30\33\3\2\2\2\31\33\3\2"+
+		"\2\2\32\25\3\2\2\2\32\31\3\2\2\2\33\5\3\2\2\2\34\35\5\b\5\2\35\36\7\4"+
+		"\2\2\36#\5\f\7\2\37 \7\5\2\2 \"\5\f\7\2!\37\3\2\2\2\"%\3\2\2\2#!\3\2\2"+
+		"\2#$\3\2\2\2$\7\3\2\2\2%#\3\2\2\2&\'\5\n\6\2\'\t\3\2\2\2()\7\b\2\2)\13"+
+		"\3\2\2\2*+\b\7\1\2+\61\5\16\b\2,-\7\6\2\2-.\5\f\7\2./\7\7\2\2/\61\3\2"+
+		"\2\2\60*\3\2\2\2\60,\3\2\2\2\61\66\3\2\2\2\62\63\f\3\2\2\63\65\5\f\7\4"+
+		"\64\62\3\2\2\2\658\3\2\2\2\66\64\3\2\2\2\66\67\3\2\2\2\67\r\3\2\2\28\66"+
+		"\3\2\2\29<\5\n\6\2:<\5\20\t\2;9\3\2\2\2;:\3\2\2\2<\17\3\2\2\2=>\7\t\2"+
+		"\2>\21\3\2\2\2\7\32#\60\66;";
 	public static final ATN _ATN =
 		new ATNDeserializer().deserialize(_serializedATN.toCharArray());
 	static {

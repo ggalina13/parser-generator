@@ -27,25 +27,15 @@ public interface GrammarOfGrammarListener extends ParseTreeListener {
 	 */
 	void exitStrings(GrammarOfGrammarParser.StringsContext ctx);
 	/**
-	 * Enter a parse tree produced by {@link GrammarOfGrammarParser#notTerminalRule}.
+	 * Enter a parse tree produced by {@link GrammarOfGrammarParser#rule_}.
 	 * @param ctx the parse tree
 	 */
-	void enterNotTerminalRule(GrammarOfGrammarParser.NotTerminalRuleContext ctx);
+	void enterRule_(GrammarOfGrammarParser.Rule_Context ctx);
 	/**
-	 * Exit a parse tree produced by {@link GrammarOfGrammarParser#notTerminalRule}.
+	 * Exit a parse tree produced by {@link GrammarOfGrammarParser#rule_}.
 	 * @param ctx the parse tree
 	 */
-	void exitNotTerminalRule(GrammarOfGrammarParser.NotTerminalRuleContext ctx);
-	/**
-	 * Enter a parse tree produced by {@link GrammarOfGrammarParser#terminalRule}.
-	 * @param ctx the parse tree
-	 */
-	void enterTerminalRule(GrammarOfGrammarParser.TerminalRuleContext ctx);
-	/**
-	 * Exit a parse tree produced by {@link GrammarOfGrammarParser#terminalRule}.
-	 * @param ctx the parse tree
-	 */
-	void exitTerminalRule(GrammarOfGrammarParser.TerminalRuleContext ctx);
+	void exitRule_(GrammarOfGrammarParser.Rule_Context ctx);
 	/**
 	 * Enter a parse tree produced by {@link GrammarOfGrammarParser#mainNotTerminal}.
 	 * @param ctx the parse tree
@@ -66,16 +56,6 @@ public interface GrammarOfGrammarListener extends ParseTreeListener {
 	 * @param ctx the parse tree
 	 */
 	void exitNotTerminal(GrammarOfGrammarParser.NotTerminalContext ctx);
-	/**
-	 * Enter a parse tree produced by {@link GrammarOfGrammarParser#terminal}.
-	 * @param ctx the parse tree
-	 */
-	void enterTerminal(GrammarOfGrammarParser.TerminalContext ctx);
-	/**
-	 * Exit a parse tree produced by {@link GrammarOfGrammarParser#terminal}.
-	 * @param ctx the parse tree
-	 */
-	void exitTerminal(GrammarOfGrammarParser.TerminalContext ctx);
 	/**
 	 * Enter a parse tree produced by {@link GrammarOfGrammarParser#expr}.
 	 * @param ctx the parse tree
