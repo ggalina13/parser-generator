@@ -19,8 +19,13 @@ public class FirstMakingVisitor extends GrammarOfGrammarBaseVisitor<HashSet<Stri
         String tokenName = ctx.getChild(0).getText();
         Integer nextChildNum = 2;
         while (nextChildNum < ctx.getChildCount()){
+            String curChildText0 = ctx.getChild(nextChildNum).getText();
+            if ((curChildText0.charAt(0) == '{') || (curChildText0.charAt(0) == '|')){
+                nextChildNum++;
+                continue;
+            }
             HashSet<String> curChildText = (HashSet<String>) visit(ctx.getChild(nextChildNum)).clone();
-            nextChildNum += 2;
+            nextChildNum ++;
             if (!firstByToken.containsKey(tokenName)){
                 firstByToken.put(tokenName, new HashSet<>());
             }

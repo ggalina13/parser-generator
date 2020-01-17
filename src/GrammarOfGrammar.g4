@@ -2,9 +2,17 @@ grammar GrammarOfGrammar;
 
 start : strings EOF;
 
-strings : rule_ ';' strings | ;
+strings : ('[' atrType nullValue ']' ';')? rule_ ';' strings | ;
 
-rule_ : mainNotTerminal ':' expr ( '|' expr)*;
+atrType : 'Integer' | 'Boolean' | 'Double';
+
+nullValue : .+;
+
+rule_ : mainNotTerminal ':' expr (atrCode)? ( '|' expr (atrCode)?)*;
+
+atrCode : AtrCode;
+
+AtrCode : '{' .+? '}';
 
 mainNotTerminal : notTerminal;
 

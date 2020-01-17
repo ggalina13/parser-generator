@@ -27,6 +27,26 @@ public interface GrammarOfGrammarListener extends ParseTreeListener {
 	 */
 	void exitStrings(GrammarOfGrammarParser.StringsContext ctx);
 	/**
+	 * Enter a parse tree produced by {@link GrammarOfGrammarParser#atrType}.
+	 * @param ctx the parse tree
+	 */
+	void enterAtrType(GrammarOfGrammarParser.AtrTypeContext ctx);
+	/**
+	 * Exit a parse tree produced by {@link GrammarOfGrammarParser#atrType}.
+	 * @param ctx the parse tree
+	 */
+	void exitAtrType(GrammarOfGrammarParser.AtrTypeContext ctx);
+	/**
+	 * Enter a parse tree produced by {@link GrammarOfGrammarParser#nullValue}.
+	 * @param ctx the parse tree
+	 */
+	void enterNullValue(GrammarOfGrammarParser.NullValueContext ctx);
+	/**
+	 * Exit a parse tree produced by {@link GrammarOfGrammarParser#nullValue}.
+	 * @param ctx the parse tree
+	 */
+	void exitNullValue(GrammarOfGrammarParser.NullValueContext ctx);
+	/**
 	 * Enter a parse tree produced by {@link GrammarOfGrammarParser#rule_}.
 	 * @param ctx the parse tree
 	 */
@@ -36,6 +56,16 @@ public interface GrammarOfGrammarListener extends ParseTreeListener {
 	 * @param ctx the parse tree
 	 */
 	void exitRule_(GrammarOfGrammarParser.Rule_Context ctx);
+	/**
+	 * Enter a parse tree produced by {@link GrammarOfGrammarParser#atrCode}.
+	 * @param ctx the parse tree
+	 */
+	void enterAtrCode(GrammarOfGrammarParser.AtrCodeContext ctx);
+	/**
+	 * Exit a parse tree produced by {@link GrammarOfGrammarParser#atrCode}.
+	 * @param ctx the parse tree
+	 */
+	void exitAtrCode(GrammarOfGrammarParser.AtrCodeContext ctx);
 	/**
 	 * Enter a parse tree produced by {@link GrammarOfGrammarParser#mainNotTerminal}.
 	 * @param ctx the parse tree

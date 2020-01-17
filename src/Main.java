@@ -7,19 +7,6 @@ import java.util.HashMap;
 public class Main {
     public static void main( String[] args) throws Exception
     {
-        /*
-        S : N E S | '';
-        E : N0 E1;
-        E1 : (',' E) | ';';
-        N0 : ('*' N0) | N;
-        N : '[^,\\$;\\*\n\t\r ]+';
-
-        E : T E1;
-        E1 : '+' E | '';
-        T : F T1;
-        T1 : '*' T | '';
-        F  : 'n' | '(' E ')';
-         */
         GrammarOfGrammarLexer lexer = new GrammarOfGrammarLexer(CharStreams.fromFileName("/home/galina13/IdeaProjects/MT/parserGenerator2/src/input.txt"));
         CommonTokenStream tokens = new CommonTokenStream(lexer);
         GrammarOfGrammarParser parser = new GrammarOfGrammarParser(tokens);
@@ -59,6 +46,13 @@ public class Main {
             }
             System.out.println();
         }*/
-
+        TerminalGenerator terminalGenerator = new TerminalGenerator();
+        terminalGenerator.generate();
+        LexicalAnalyzerGenerator lexerGenerator = new LexicalAnalyzerGenerator();
+        lexerGenerator.generate();
+        TreeGenerator treeGenerator = new TreeGenerator();
+        treeGenerator.generate();
+        ParserGenerator parserGeneratorVisitor = new ParserGenerator();
+        parserGeneratorVisitor.visit(tree);
     }
 }

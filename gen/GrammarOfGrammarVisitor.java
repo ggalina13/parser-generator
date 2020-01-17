@@ -22,11 +22,29 @@ public interface GrammarOfGrammarVisitor<T> extends ParseTreeVisitor<T> {
 	 */
 	T visitStrings(GrammarOfGrammarParser.StringsContext ctx);
 	/**
+	 * Visit a parse tree produced by {@link GrammarOfGrammarParser#atrType}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitAtrType(GrammarOfGrammarParser.AtrTypeContext ctx);
+	/**
+	 * Visit a parse tree produced by {@link GrammarOfGrammarParser#nullValue}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitNullValue(GrammarOfGrammarParser.NullValueContext ctx);
+	/**
 	 * Visit a parse tree produced by {@link GrammarOfGrammarParser#rule_}.
 	 * @param ctx the parse tree
 	 * @return the visitor result
 	 */
 	T visitRule_(GrammarOfGrammarParser.Rule_Context ctx);
+	/**
+	 * Visit a parse tree produced by {@link GrammarOfGrammarParser#atrCode}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitAtrCode(GrammarOfGrammarParser.AtrCodeContext ctx);
 	/**
 	 * Visit a parse tree produced by {@link GrammarOfGrammarParser#mainNotTerminal}.
 	 * @param ctx the parse tree

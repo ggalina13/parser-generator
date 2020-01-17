@@ -7,6 +7,7 @@ public class FollowMakingVisitor extends GrammarOfGrammarBaseVisitor {
     public static Boolean changed;
     public static HashMap<String, HashSet<String>> followByToken;
     public static Boolean foundStart;
+    public static String start = "";
 
     public ParseTree findRightmostToken(GrammarOfGrammarParser.ExprContext ctx){
         if (ctx.getChildCount() == 1) {
@@ -71,17 +72,23 @@ public class FollowMakingVisitor extends GrammarOfGrammarBaseVisitor {
         String tokenName = ctx.getChild(0).getText();
         if (!foundStart){
             foundStart = true;
+            start = tokenName;
             followByToken.put(tokenName, new HashSet<>());
             followByToken.get(tokenName).add("END");
         }
         Integer nextChildNum = 2;
         while (nextChildNum < ctx.getChildCount()){
+            String curChildText = ctx.getChild(nextChildNum).getText();
+            if ((curChildText.charAt(0) == '{') || (curChildText.charAt(0) == '|')){
+                nextChildNum++;
+                continue;
+            }
             //HashSet<String> curChildFirst = FirstMakingVisitor.firstByExprCtx.get(ctx.getChild(nextChildNum));
             // if ε ∈ FIRST(γ)
             //    FOLLOW[B] ∪= FOLLOW[A]
             ParseTree rightMostTokenCtx = findRightmostToken((GrammarOfGrammarParser.ExprContext) ctx.getChild(nextChildNum));
             if (rightMostTokenCtx == null) {
-                nextChildNum += 2;
+                nextChildNum++;
                 continue;
             }
             String rightMostToken = rightMostTokenCtx.getText();
@@ -105,7 +112,7 @@ public class FollowMakingVisitor extends GrammarOfGrammarBaseVisitor {
                 rightMostTokenCtx = findLefter(rightMostTokenCtx);
                 rightMostToken = rightMostTokenCtx.getText();
             }
-            nextChildNum += 2;
+            nextChildNum ++;
         }
         return (HashSet<String>) visitChildren(ctx);
     }

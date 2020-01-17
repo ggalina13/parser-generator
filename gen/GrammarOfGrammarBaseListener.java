@@ -39,6 +39,30 @@ public class GrammarOfGrammarBaseListener implements GrammarOfGrammarListener {
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
+	@Override public void enterAtrType(GrammarOfGrammarParser.AtrTypeContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void exitAtrType(GrammarOfGrammarParser.AtrTypeContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void enterNullValue(GrammarOfGrammarParser.NullValueContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void exitNullValue(GrammarOfGrammarParser.NullValueContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
 	@Override public void enterRule_(GrammarOfGrammarParser.Rule_Context ctx) { }
 	/**
 	 * {@inheritDoc}
@@ -46,6 +70,18 @@ public class GrammarOfGrammarBaseListener implements GrammarOfGrammarListener {
 	 * <p>The default implementation does nothing.</p>
 	 */
 	@Override public void exitRule_(GrammarOfGrammarParser.Rule_Context ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void enterAtrCode(GrammarOfGrammarParser.AtrCodeContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void exitAtrCode(GrammarOfGrammarParser.AtrCodeContext ctx) { }
 	/**
 	 * {@inheritDoc}
 	 *

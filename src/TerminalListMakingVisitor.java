@@ -7,6 +7,8 @@ public class TerminalListMakingVisitor extends GrammarOfGrammarBaseVisitor {
     public static HashMap <String, String> nameByTerminal = new HashMap<>();
     public static HashMap <String, String> terminalByName = new HashMap<>();
     public static HashSet<String> notTerminals = new HashSet<String>();
+    public static String type = "Integer";
+    public static String nullValue = "0";
     Integer lastTerminalNum = 0;
 
     /*@Override public String visitTerminalRule(GrammarOfGrammarParser.TerminalRuleContext ctx) {
@@ -20,6 +22,8 @@ public class TerminalListMakingVisitor extends GrammarOfGrammarBaseVisitor {
     @Override public String visitTerminalExpr(GrammarOfGrammarParser.TerminalExprContext ctx) {
         String terminal = ctx.getChild(0).getText();
         String terminalName;
+        if (terminals.contains(terminal))
+                return (String) visitChildren(ctx);
         if (terminal.equals("''")){
             terminalName = "EPS";
         }
