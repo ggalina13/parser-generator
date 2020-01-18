@@ -1,0 +1,23 @@
+[ Integer 0 ] {import java.util.Hashtable;} {Hashtable<String, Integer> valueByVar = new Hashtable<>();};
+S : S1 S | '';
+S1 : '[a-z0-9]+' '=' E ';' {valueByVar.put(text0, E.value);System.out.println(text0 + "=" + E.value);};
+E : T E1 {curValue = T.value + E1.value;};
+E1 : '\\+' E {curValue = E.value;}| '' {curValue = 0;};
+T : F T1 {curValue = F.value * T1.value;};
+T1 : '\\*' T {curValue = T.value;}| '' {curValue = 1;};
+F  : N {curValue = N.value;} | '\\(' E '\\)' {curValue = E.value;};
+N : '[0-9]+'{curValue = Integer.parseInt(text0);} | '[a-z0-9]+' {curValue = valueByVar.get(text0);};
+
+"/home/galina13/IdeaProjects/MT/GeneratedSuperCalc/src"
+
+[ Integer 0 ] {import java.util.Hashtable;} {Hashtable<String, Integer> valueByVar = new Hashtable<>();};
+S : S1 S | '';
+S1 : '[a-z0-9]+' '=' E ';' {valueByVar.put(text0, E.value);System.out.println(text0 + "=" + E.value);};
+E : T E1 {curValue = T.value + E1.value;};
+E1 : '\\+' E {curValue = E.value;}| '' {curValue = 0;};
+T : M T1 {curValue = M.value * T1.value;};
+T1 : 'x' T {curValue = T.value;}| '' {curValue = 1;};
+M : F M1 {int k = (int) Math.round(Math.pow(F.value, M1.value)); curValue = k;};
+M1 : '\\*\\*' M {curValue = M.value;} | '' {curValue = 1;};
+F  : N {curValue = N.value;} | '\\(' E '\\)' {curValue = E.value;};
+N : '[0-9]+'{curValue = Integer.parseInt(text0);} | '[a-z0-9]+' {curValue = valueByVar.get(text0);};

@@ -7,7 +7,7 @@ import java.nio.file.Paths;
 
 public class TerminalGenerator {
     public void generate() throws IOException {
-        Path dirPath =  Paths.get("/home/galina13/IdeaProjects/MPP2/GeneratedParser/src");
+        Path dirPath =  Paths.get(TerminalListMakingVisitor.projectPath);
         Files.createDirectories(dirPath);
         String fileName = "Terminal.java";
         PrintWriter printWriter = new PrintWriter(new File(dirPath.toString(), fileName));
@@ -20,16 +20,15 @@ public class TerminalGenerator {
         String terminalEnum = "\t";
         boolean start = true;
         for (String terminal : TerminalListMakingVisitor.terminals){
+            if (terminal.equals("''"))
+                continue;
             if (!start){
                 terminalEnum += ", ";
             }
             start = false;
             terminalEnum += TerminalListMakingVisitor.nameByTerminal.get(terminal);
         }
-        if (!TerminalListMakingVisitor.terminals.isEmpty())
-            terminalEnum += ", ";
-        terminalEnum += "END;\n";
-        stringBuilder.append(terminalEnum);
+        stringBuilder.append(terminalEnum + "\n");
         stringBuilder.append("}");
         return stringBuilder;
     }

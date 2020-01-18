@@ -1,8 +1,8 @@
 grammar GrammarOfGrammar;
 
-start : strings EOF;
+start : ('[' atrType nullValue ']' atrCode atrCode ';')? strings EOF;
 
-strings : ('[' atrType nullValue ']' ';')? rule_ ';' strings | ;
+strings : rule_ ';' strings | ;
 
 atrType : 'Integer' | 'Boolean' | 'Double';
 
@@ -12,7 +12,7 @@ rule_ : mainNotTerminal ':' expr (atrCode)? ( '|' expr (atrCode)?)*;
 
 atrCode : AtrCode;
 
-AtrCode : '{' .+? '}';
+AtrCode : '{' .*? '}';
 
 mainNotTerminal : notTerminal;
 
@@ -33,4 +33,3 @@ Rgx : '\'' .*? '\'';
 
 WS
    : [ \n\t\r]+ -> skip;
-

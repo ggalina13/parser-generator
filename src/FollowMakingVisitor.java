@@ -93,7 +93,7 @@ public class FollowMakingVisitor extends GrammarOfGrammarBaseVisitor {
             }
             String rightMostToken = rightMostTokenCtx.getText();
             while (true) {
-                if (rightMostToken == null)
+                if (rightMostTokenCtx == null)
                     break;
                 HashSet<String> rightTokenFirst = (HashSet<String>) FirstMakingVisitor.firstByToken.get(rightMostToken).clone();
                 if (!followByToken.containsKey(rightMostToken)) {
@@ -109,8 +109,10 @@ public class FollowMakingVisitor extends GrammarOfGrammarBaseVisitor {
                 }
                 if (!rightTokenFirst.contains("EPS"))
                     break;
-                rightMostTokenCtx = findLefter(rightMostTokenCtx);
-                rightMostToken = rightMostTokenCtx.getText();
+                if (rightMostTokenCtx != null)
+                    rightMostTokenCtx = findLefter(rightMostTokenCtx);
+                if (rightMostTokenCtx != null)
+                    rightMostToken = rightMostTokenCtx.getText();
             }
             nextChildNum ++;
         }

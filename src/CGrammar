@@ -1,0 +1,7 @@
+[ Integer 0 ] {};
+S : '[a-zA-Z0-9]+' E S | '';
+E : N0 E1 {curValue = N0.value + E1.value;};
+E1 : (',' E) | ';';
+N0 : ('\\*' N0) | '[a-zA-Z0-9]+';
+
+"/home/galina13/IdeaProjects/MPP2/GeneratedParser/src"

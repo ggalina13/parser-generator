@@ -3,12 +3,11 @@ import java.util.HashMap;
 import java.util.HashSet;
 
 public class TerminalListMakingVisitor extends GrammarOfGrammarBaseVisitor {
+    public static String projectPath = "/home/galina13/IdeaProjects/MT/GeneratedCalc/src";
     public static HashSet<String> terminals = new HashSet<String>();
     public static HashMap <String, String> nameByTerminal = new HashMap<>();
     public static HashMap <String, String> terminalByName = new HashMap<>();
     public static HashSet<String> notTerminals = new HashSet<String>();
-    public static String type = "Integer";
-    public static String nullValue = "0";
     Integer lastTerminalNum = 0;
 
     /*@Override public String visitTerminalRule(GrammarOfGrammarParser.TerminalRuleContext ctx) {

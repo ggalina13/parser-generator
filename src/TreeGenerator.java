@@ -7,7 +7,7 @@ import java.nio.file.Paths;
 
 public class TreeGenerator {
     public void generate() throws IOException {
-        Path dirPath =  Paths.get("/home/galina13/IdeaProjects/MPP2/GeneratedParser/src");
+        Path dirPath =  Paths.get(TerminalListMakingVisitor.projectPath);
         Files.createDirectories(dirPath);
         String fileName = "Tree.java";
         PrintWriter printWriter = new PrintWriter(new File(dirPath.toString(), fileName));
@@ -27,12 +27,12 @@ public class TreeGenerator {
                 "import java.util.Arrays;\n" +
                 "import java.util.List;\n" +
                 "public class Tree {\n" +
-                "\tpublic " + TerminalListMakingVisitor.type + " value;\n" +
+                "\tpublic " + ParserGenerator.type + " value;\n" +
                 "\tprivate final List<Tree> children;\n" +
-                "\tprivate final String name;\n" +
+                "\tpublic final String name;\n" +
                 "\tTree(String name) {\n" +
                 "\t\tthis.name = name;\n" +
-                "\t\tthis.value = " + TerminalListMakingVisitor.nullValue + ";\n" +
+                "\t\tthis.value = " + ParserGenerator.nullValue + ";\n" +
                 "\t\tthis.children = new ArrayList<>();\n" +
                 "\t}\n" +
                 "\tpublic void addChild(Tree child){\n" +
@@ -59,7 +59,7 @@ public class TreeGenerator {
                 "\t\tfor (int i = 0; i < level; i++){\n" +
                 "\t\t\twriter.write(\"________\");\n" +
                 "\t\t}\n" +
-                "\t\twriter.write(value);\n" +
+                "\t\twriter.write(value.toString() + \" \" + name);\n" +
                 "\t\twriter.newLine();\n" +
                 "\t\tif (!children.isEmpty()){\n" +
                 "\t\t\tfor (Tree child : children) {\n" +

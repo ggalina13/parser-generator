@@ -7,7 +7,7 @@ import java.nio.file.Paths;
 
 public class LexicalAnalyzerGenerator {
     public void generate() throws IOException {
-        Path dirPath =  Paths.get("/home/galina13/IdeaProjects/MPP2/GeneratedParser/src");
+        Path dirPath =  Paths.get(TerminalListMakingVisitor.projectPath);
         Files.createDirectories(dirPath);
         String fileName = "LexicalAnalyzer.java";
         PrintWriter printWriter = new PrintWriter(new File(dirPath.toString(), fileName));
@@ -33,6 +33,8 @@ public class LexicalAnalyzerGenerator {
         //rgxByTerminal.put(Terminal.COMMA, ",");
         for (String terminal : TerminalListMakingVisitor.terminals){
             String name = TerminalListMakingVisitor.nameByTerminal.get(terminal);
+            if (terminal.equals("''"))
+                continue;
             stringBuilder.append("\t\trgxByTerminal.put(Terminal." +
                     name + ", \"" +
                     terminal.substring(1, terminal.length() - 1) + "\");\n");
