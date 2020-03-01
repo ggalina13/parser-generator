@@ -1,7 +1,0 @@
-[ Integer 0 ] {} {};
-E : T E1 {curValue = T.value + E1.value;};
-E1 : '\\+' E {curValue = E.value;}| '' ;
-T : F T1 {curValue = F.value * T1.value;};
-T1 : '\\*' T {curValue = T.value;}| '' {curValue = 1;};
-F  : N {curValue = N.value;}| '\\(' E '\\)' {curValue = E.value;};
-N : '[0-9]+'{curValue = Integer.parseInt(text0);};

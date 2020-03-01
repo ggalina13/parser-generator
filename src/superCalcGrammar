@@ -1,23 +1,27 @@
-[ Integer 0 ] {import java.util.Hashtable;} {Hashtable<String, Integer> valueByVar = new Hashtable<>();};
+[ Integer 0 ] {import java.util.Hashtable;} {Hashtable<String, Integer> valueByVar = new Hashtable<>(); String curOp = ""; Integer curRes = 0; Integer curRes2 = 0;};
 S : S1 S | '';
 S1 : '[a-z0-9]+' '=' E ';' {valueByVar.put(text0, E.value);System.out.println(text0 + "=" + E.value);};
-E : T E1 {curValue = T.value + E1.value;};
-E1 : '\\+' E {curValue = E.value;}| '' {curValue = 0;};
-T : F T1 {curValue = F.value * T1.value;};
-T1 : '\\*' T {curValue = T.value;}| '' {curValue = 1;};
-F  : N {curValue = N.value;} | '\\(' E '\\)' {curValue = E.value;};
-N : '[0-9]+'{curValue = Integer.parseInt(text0);} | '[a-z0-9]+' {curValue = valueByVar.get(text0);};
 
-"/home/galina13/IdeaProjects/MT/GeneratedSuperCalc/src"
+E : O1 E1 {curValue = curRes2;};
 
-[ Integer 0 ] {import java.util.Hashtable;} {Hashtable<String, Integer> valueByVar = new Hashtable<>();};
-S : S1 S | '';
-S1 : '[a-z0-9]+' '=' E ';' {valueByVar.put(text0, E.value);System.out.println(text0 + "=" + E.value);};
-E : T E1 {curValue = T.value + E1.value;};
-E1 : '\\+' E {curValue = E.value;}| '' {curValue = 0;};
-T : M T1 {curValue = M.value * T1.value;};
-T1 : 'x' T {curValue = T.value;}| '' {curValue = 1;};
-M : F M1 {int k = (int) Math.round(Math.pow(F.value, M1.value)); curValue = k;};
-M1 : '\\*\\*' M {curValue = M.value;} | '' {curValue = 1;};
-F  : N {curValue = N.value;} | '\\(' E '\\)' {curValue = E.value;};
+E1 : Q E1 | V E1 | '';
+
+Q : '\\+' T {curRes2 += T.value;};
+V : '\\-' T {curRes2 -= T.value;};
+
+O1 : T {curRes2 = T.value;};
+
+T : O T1 {curValue = curRes;};
+
+O : W {curRes = W.value;};
+
+T1 : M T1 | D T1 | '';
+
+M : '\\*' W {curRes *= W.value;};
+D : '\\/' W {curRes /= W.value;};
+
+W : F W1 {curValue = (int) Math.round(Math.pow(F.value, W1.value));};
+W1 : '\\^' W {curValue = W.value;}| ''{curValue = 1;};
+
+F  : N {curValue = N.value;} | '\\(' E '\\)' {curValue = E.value;} | '\\-' F {curValue = -F.value;};
 N : '[0-9]+'{curValue = Integer.parseInt(text0);} | '[a-z0-9]+' {curValue = valueByVar.get(text0);};
